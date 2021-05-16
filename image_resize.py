@@ -64,7 +64,6 @@ def filt_():
         st.write("CONTOUR()")
         st.write("EDGE_ENHANCE()")
         st.write("EMBOSS()")
-        st.write("Split RGB Colors")
         if x=='CONTOUR()':
             final=img.filter(ImageFilter.CONTOUR())
         elif x=='EDGE_ENHANCE()':
