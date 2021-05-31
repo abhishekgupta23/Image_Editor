@@ -141,12 +141,12 @@ def flip():
 def main():
     selected_box = st.sidebar.selectbox(
         'Choose one of the following',
-        ('crop image','show image details','resize','rotate image','convert image','add mask','flip the image','filter image','add font on image')
+        ('show image details','crop image','resize','rotate image','convert image','add mask','flip the image','filter image','add font on image')
         )
-    if selected_box == 'crop image':
-        crop_image() 
     if selected_box == 'show image details':
-        show()
+        show() 
+    if selected_box == 'crop image' :
+        crop_image()
     if selected_box == 'resize':
         resize()
     if selected_box == 'rotate image':
