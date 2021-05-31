@@ -45,7 +45,9 @@ def resize():
         st.image(final)
         btn=st.button("Done")
         if btn:
+            a = final
             final.save('final image.png','PNG')
+            return a
 def filt_():
     f=image()
     if f:
