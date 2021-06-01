@@ -118,7 +118,7 @@ if selected_box == 'add font on image':
     if a:
         img=Image.open(a)
         x=st.text_input("enter the the value")
-        c=st.color_picker(label="choose color of text")
+        c = st.sidebar.color_picker("Background color hex: ", "#eee", key="sidebar")
         f=st.slider('Font Size',0,100)
         x1=st.slider('Height',0,img.width)
         y1=st.slider('Width',0,img.height)
