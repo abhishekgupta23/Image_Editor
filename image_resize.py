@@ -77,12 +77,12 @@ if selected_box == 'flip the image':
     if a:
         img=Image.open(a)
         option2=st.selectbox("",('FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
-    if option2 == 'FLIP_LEFT_RIGHT':
-        final=img.transpose(Image.FLIP_LEFT_RIGHT)
-    elif option2=='FLIP_TOP_BOTTOM':
-        final=img.transpose(Image.FLIP_TOP_BOTTOM)
-    elif option2=='ROTATE_90':
-        final=img.transpose(Image.ROTATE_90)
+        if option2 == 'FLIP_LEFT_RIGHT':
+                final=img.transpose(Image.FLIP_LEFT_RIGHT)
+        elif option2=='FLIP_TOP_BOTTOM':
+                final=img.transpose(Image.FLIP_TOP_BOTTOM)
+        elif option2=='ROTATE_90':
+                final=img.transpose(Image.ROTATE_90)
         st.title("FINAL IMAGE")
         st.image(final)
         btn=st.button("Done")
@@ -94,20 +94,20 @@ if selected_box == 'filter image':
      if a:
         img=Image.open(a)
         option=st.selectbox("...",('SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
-    if option=='SHARPEN':
-        final=img.filter(ImageFilter.SHARPEN())
-    elif option=='SMOOTH':
-        final=img.filter(ImageFilter.SMOOTH())
-    elif option=='EMBOSS':
-        final=img.filter(ImageFilter.EMBOSS())
-    elif option=='CONTOUR':
-        final=img.filter(ImageFilter.CONTOUR())
-    elif option=='BLUR':
-        final=img.filter(ImageFilter.BLUR())
-    elif option=="BOX BLUR":
-        final=img.filter(ImageFilter.BoxBlur(),radius=1)
-    elif option=="EDGE ENHANCE":
-        final=img.filter(ImageFilter.EDGE_ENHANCE())
+        if option=='SHARPEN':
+                final=img.filter(ImageFilter.SHARPEN())
+        elif option=='SMOOTH':
+                final=img.filter(ImageFilter.SMOOTH())
+        elif option=='EMBOSS':
+                final=img.filter(ImageFilter.EMBOSS())
+        elif option=='CONTOUR':
+                final=img.filter(ImageFilter.CONTOUR())
+        elif option=='BLUR':
+                final=img.filter(ImageFilter.BLUR())
+        elif option=="BOX BLUR":
+                final=img.filter(ImageFilter.BoxBlur(),radius=1)
+        elif option=="EDGE ENHANCE":
+                final=img.filter(ImageFilter.EDGE_ENHANCE())
         st.title("FINAL IMAGE")
         st.image(final)
         btn=st.button("Done")
