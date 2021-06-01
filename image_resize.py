@@ -51,8 +51,8 @@ if selected_box == 'resize':
 if selected_box == 'rotate image':
     if a:
         img=Image.open(a)
-        x1=int(st.text_input("degree",0))
-        final=img.rotate((x1))
+        x1=st.number_input("degree",0)
+        final=img.rotate(int(x1))
         st.title("FINAL IMAGE")
         st.image(final)
         btn=st.button("Done")
@@ -76,16 +76,13 @@ if selected_box == 'add mask':
 if selected_box == 'flip the image':
     if a:
         img=Image.open(a)
-        x=st.text_input("degree","")
-        st.write("values you can enter :-")
-        st.write("FLIP_LEFT_RIGHT")
-        st.write("FLIP_TOP_BOTTOM")
-        if x=='FLIP_LEFT_RIGHT':
-            final=img.transpose(Image.FLIP_LEFT_RIGHT)
-        elif x=='FLIP_TOP_BOTTOM':
-            final=img.transpose(Image.FLIP_TOP_BOTTOM)
-        else:
-            final=img
+        option2=st.selectbox("",('FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
+    if option2 == 'FLIP_LEFT_RIGHT':
+        final=img.transpose(Image.FLIP_LEFT_RIGHT)
+    elif option2=='FLIP_TOP_BOTTOM':
+        final=img.transpose(Image.FLIP_TOP_BOTTOM)
+    elif option2=='ROTATE_90':
+        final=img.transpose(Image.ROTATE_90)
         st.title("FINAL IMAGE")
         st.image(final)
         btn=st.button("Done")
@@ -96,19 +93,21 @@ if selected_box == 'flip the image':
 if selected_box == 'filter image':
      if a:
         img=Image.open(a)
-        x=st.text_input("enter the the value")
-        st.write("CONTOUR()")
-        st.write("EDGE_ENHANCE()")
-        st.write("EMBOSS()")
-        st.write("Split RGB Colors")
-        if x=='CONTOUR()':
-            final=img.filter(ImageFilter.CONTOUR())
-        elif x=='EDGE_ENHANCE()':
-            final=img.filter(ImageFilter.EDGE_ENHANCE())
-        elif x=='EMBOSS()':
-            final=img.filter(ImageFilter.EMBOSS())
-        else:
-            final=img
+        option=st.selectbox("...",('SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
+    if option=='SHARPEN':
+        final=img.filter(ImageFilter.SHARPEN())
+    elif option=='SMOOTH':
+        final=img.filter(ImageFilter.SMOOTH())
+    elif option=='EMBOSS':
+        final=img.filter(ImageFilter.EMBOSS())
+    elif option=='CONTOUR':
+        final=img.filter(ImageFilter.CONTOUR())
+    elif option=='BLUR':
+        final=img.filter(ImageFilter.BLUR())
+    elif option=="BOX BLUR":
+        final=img.filter(ImageFilter.BoxBlur(),radius=1)
+    elif option=="EDGE ENHANCE":
+        final=img.filter(ImageFilter.EDGE_ENHANCE())
         st.title("FINAL IMAGE")
         st.image(final)
         btn=st.button("Done")
@@ -119,12 +118,13 @@ if selected_box == 'add font on image':
     if a:
         img=Image.open(a)
         x=st.text_input("enter the the value")
+        c=st.color_picker(label="choose color of text")
         f=st.slider('Font Size',0,100)
         x1=st.slider('Height',0,img.width)
         y1=st.slider('Width',0,img.height)
         font=ImageFont.truetype('RobotoMono-VariableFont_wght.ttf',f)
         writer=ImageDraw.Draw(img)
-        writer.text((x1,y1),x,font=font,fill=(225,0,0))
+        writer.text((x1,y1),x,font=font,fill=c)
         final=img
         st.title("FINAL IMAGE")
         st.image(final)
