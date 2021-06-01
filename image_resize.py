@@ -1,12 +1,28 @@
 import streamlit as st
 from PIL import Image, ImageFilter,ImageFont,ImageDraw
 import base64
-import pandas as pd
+from streamlit import color_picker
+from io import BytesIO
+st.markdown(
+    """
+    <style>
+    .reportview-container {
+        background: url("https://images.unsplash.com/photo-1516724562728-afc824a36e84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1351&q=80")
+    }
+   .sidebar .sidebar-content {
+        background: url("url_goes_here")
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 st.title('IMAGE EDITOR')
+def mask():
+    st.title("COMING SOON")
 a=st.file_uploader('upload images')
 selected_box = st.sidebar.selectbox(
         'Choose one of the following',
-        ('show image details','crop image','resize','rotate image','convert image','add mask','flip the image','filter image','add font on image')
+        ('Select Option from dropdown','show image details','crop image','resize','rotate image','convert image','flip the image','filter image','add font on image','Add Image Over Image','add mask')
         )
 if selected_box == 'show image details':
     if a:
@@ -34,7 +50,11 @@ if selected_box == 'crop image' :
         btn=st.button("Done")
         if btn:
             a = final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
 if selected_box == 'resize':
     if a:
         img=Image.open(a)
@@ -46,7 +66,11 @@ if selected_box == 'resize':
         btn=st.button("Done")
         if btn:
             a = final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
             
 if selected_box == 'rotate image':
     if a:
@@ -58,7 +82,11 @@ if selected_box == 'rotate image':
         btn=st.button("Done")
         if btn:
             a=final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
 if selected_box == 'convert image':
     if a:
         img=Image.open(a)
@@ -70,13 +98,17 @@ if selected_box == 'convert image':
         btn=st.button("Done")
         if btn:
             a=final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
 if selected_box == 'add mask':
     mask()
 if selected_box == 'flip the image':
     if a:
         img=Image.open(a)
-        option2=st.selectbox("",('FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
+        option2=st.selectbox("",(' ','FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
         if option2 == 'FLIP_LEFT_RIGHT':
                 final=img.transpose(Image.FLIP_LEFT_RIGHT)
         elif option2=='FLIP_TOP_BOTTOM':
@@ -88,12 +120,16 @@ if selected_box == 'flip the image':
         btn=st.button("Done")
         if btn:
             a = final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
         
 if selected_box == 'filter image':
      if a:
         img=Image.open(a)
-        option=st.selectbox("...",('SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
+        option=st.selectbox("...",(' ','SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
         if option=='SHARPEN':
                 final=img.filter(ImageFilter.SHARPEN())
         elif option=='SMOOTH':
@@ -113,16 +149,20 @@ if selected_box == 'filter image':
         btn=st.button("Done")
         if btn:
             a = final
-            final.save('final image.png','PNG')
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
 if selected_box == 'add font on image':
     if a:
         img=Image.open(a)
         x=st.text_input("enter the the value")
-        c = st.color_picker("Background color hex: ", "#eee", key="main")
+        c = st.color_picker(label="Text color")
         f=st.slider('Font Size',0,100)
         x1=st.slider('Height',0,img.width)
         y1=st.slider('Width',0,img.height)
-        font=ImageFont.truetype('RobotoMono-VariableFont_wght.ttf',f)
+        font=ImageFont.truetype('t.ttf',f)
         writer=ImageDraw.Draw(img)
         writer.text((x1,y1),x,font=font,fill=c)
         final=img
@@ -131,6 +171,25 @@ if selected_box == 'add font on image':
         btn=st.button("Done")
         if btn:
             a=final
-            final.save('final image.png','PNG')
-def mask():
-    st.title("COMING SOON")
+            buffered = BytesIO()
+            final.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
+if selected_box == 'Add Image Over Image':
+    if a:
+        img=Image.open(a)
+        p=st.file_uploader("")
+        if p:
+            width=st.slider("enter x1",0,img.width)
+            height=st.slider("enter x2",0,img.height)
+            p=Image.open(p)
+            final = img.paste(p,(int(width),int(height)))
+            btn=st.button("Done")
+            if btn:
+                a=final
+                buffered = BytesIO()
+                final.save(buffered, format="JPEG")
+                img_str = base64.b64encode(buffered.getvalue()).decode()
+                href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+                st.markdown(href, unsafe_allow_html=True)
