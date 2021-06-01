@@ -162,7 +162,7 @@ if selected_box == 'add font on image':
         f=st.slider('Font Size',0,100)
         x1=st.slider('Height',0,img.width)
         y1=st.slider('Width',0,img.height)
-        font=ImageFont.truetype('t.ttf',f)
+        font=ImageFont.truetype('RobotoMono-VariableFont_wght.ttf',f)
         writer=ImageDraw.Draw(img)
         writer.text((x1,y1),x,font=font,fill=c)
         final=img
