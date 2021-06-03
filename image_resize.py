@@ -154,10 +154,6 @@ def app():
         if a:
             img=Image.open(a)
             x=st.text_input("enter the the value")
-            c = st.color_picker(label="Text color")
-            f=st.slider('Font Size',0,100)
-            x1=st.slider('Height',0,img.width)
-            y1=st.slider('Width',0,img.height)
             choice=st.selectbox("choose font",("OdibeeSans-Regular","RobotoMono-VariableFont_wght","ZCOOLKuaiLe-Regular","IndieFlower-Regular","ShadowsIntoLight-Regular","Pacifico-Regular"))
             f=st.number_input("enter font size")
             if choice=="RobotoMono-VariableFont_wght":
@@ -172,6 +168,9 @@ def app():
                 font=ImageFont.truetype('ShadowsIntoLight-Regular.ttf',int(f))
             elif choice=="Pacifico-Regular":
                 font=ImageFont.truetype('Pacifico-Regular.ttf',int(f))
+            c = st.color_picker(label="Text color")
+            x1=st.slider('Height',0,img.width)
+            y1=st.slider('Width',0,img.height)
             writer=ImageDraw.Draw(img)
             writer.text((x1,y1),x,font=font,fill=c)
             final=img
