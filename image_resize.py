@@ -184,7 +184,7 @@ if selected_box == 'Add Image Over Image':
             width=st.slider("enter x1",0,img.width)
             height=st.slider("enter x2",0,img.height)
             p=Image.open(p)
-            final = Image.paste(img,p,(int(width),int(height)))
+            final = img.paste(p,(int(width),int(height)))
             st.image(final)
             btn=st.button("Done")
             if btn:
