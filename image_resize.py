@@ -169,6 +169,8 @@ def app():
             elif choice=="Pacifico-Regular":
                 font=ImageFont.truetype('Pacifico-Regular.ttf',int(f))
             writer=ImageDraw.Draw(img)
+            x1=st.slider('x1',0,img.width)
+            y1=st.slider('y1',0,img.height)
             writer.text((x1,y1),x,font=font,fill=(255,0,255))
             st.title("FINAL IMAGE")
             st.image(img)
