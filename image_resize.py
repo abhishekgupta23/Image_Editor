@@ -169,7 +169,7 @@ def app():
             elif choice=="Pacifico-Regular":
                 font=ImageFont.truetype('Pacifico-Regular.ttf',int(f))
             writer=ImageDraw.Draw(img)
-            writer.text((x1,y1),x,font=font,fill=#000000)
+            writer.text((x1,y1),x,font=font,fill=(255,0,255))
             st.title("FINAL IMAGE")
             st.image(img)
             btn=st.button("Done")
