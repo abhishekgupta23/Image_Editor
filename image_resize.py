@@ -190,13 +190,13 @@ def app():
                 width=st.slider("enter x1",0,img.width)
                 height=st.slider("enter x2",0,img.height)
                 p=Image.open(p)
-                final = img.paste(p,(int(width),int(height)))
-                st.image(final)
+                img.paste(p,(int(width),int(height)))
+                st.image(img)
                 btn=st.button("Done")
                 if btn:
                     a=final
                     buffered = BytesIO()
-                    final.save(buffered, format="JPEG")
+                    img.save(buffered, format="JPEG")
                     img_str = base64.b64encode(buffered.getvalue()).decode()
                     href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
                     st.markdown(href, unsafe_allow_html=True)
