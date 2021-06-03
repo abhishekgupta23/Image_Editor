@@ -189,7 +189,11 @@ def app():
                 width=st.slider("enter x1",0,img.width)
                 height=st.slider("enter x2",0,img.height)
                 p=Image.open(p)
-                img.paste(p,(int(width),int(height)))
+                st.write("to change the size of pasted image")
+                x1=st.slider('enter width',0,p.width)
+                y1=st.slider('enter height',0,p.height)
+                final=p.resize((x1,y1))
+                img.paste(final,(int(width),int(height)))
                 st.image(img)
                 btn=st.button("Done")
                 if btn:
