@@ -168,11 +168,8 @@ def app():
                 font=ImageFont.truetype('ShadowsIntoLight-Regular.ttf',int(f))
             elif choice=="Pacifico-Regular":
                 font=ImageFont.truetype('Pacifico-Regular.ttf',int(f))
-            c = st.color_picker(label="Text color")
-            x1=st.slider('Height',0,img.width)
-            y1=st.slider('Width',0,img.height)
             writer=ImageDraw.Draw(img)
-            writer.text((x1,y1),x,font=font,fill=c)
+            writer.text((x1,y1),x,font=font,fill=#000000)
             final=img
             st.title("FINAL IMAGE")
             st.image(final)
