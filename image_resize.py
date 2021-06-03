@@ -105,6 +105,8 @@ def app():
         if a:
             img=Image.open(a)
             option2=st.selectbox("",(' ','FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
+            if option2==' ':
+                    final=img
             if option2 == 'FLIP_LEFT_RIGHT':
                     final=img.transpose(Image.FLIP_LEFT_RIGHT)
             elif option2=='FLIP_TOP_BOTTOM':
@@ -126,6 +128,8 @@ def app():
          if a:
             img=Image.open(a)
             option=st.selectbox("...",(' ','SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
+            if option==' ':
+                    final=img
             if option=='SHARPEN':
                     final=img.filter(ImageFilter.SHARPEN())
             elif option=='SMOOTH':
