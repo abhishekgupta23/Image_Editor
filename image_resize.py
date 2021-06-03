@@ -176,7 +176,6 @@ def app():
             st.image(img)
             btn=st.button("Done")
             if btn:
-                a=final
                 buffered = BytesIO()
                 img.save(buffered, format="JPEG")
                 img_str = base64.b64encode(buffered.getvalue()).decode()
@@ -194,7 +193,6 @@ def app():
                 st.image(img)
                 btn=st.button("Done")
                 if btn:
-                    a=final
                     buffered = BytesIO()
                     img.save(buffered, format="JPEG")
                     img_str = base64.b64encode(buffered.getvalue()).decode()
