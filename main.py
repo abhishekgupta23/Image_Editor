@@ -1,8 +1,8 @@
 import masking
-import image_editor
+import image_resize
 import streamlit as st
 PAGES = {
-    "editing": image_editor,
+    "editing": image_resize,
     "masking": masking
 }
 st.sidebar.title('Navigation')
