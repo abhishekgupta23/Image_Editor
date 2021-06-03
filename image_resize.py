@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .reportview-container {
-        background: url("https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80")no-repeat center fixed;
+        background: url("https://images.unsplash.com/photo-1552168324-d612d77725e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80")no-repeat center fixed;
         background-size: cover;
     }
     </style>
