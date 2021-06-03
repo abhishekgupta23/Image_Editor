@@ -158,7 +158,20 @@ def app():
             f=st.slider('Font Size',0,100)
             x1=st.slider('Height',0,img.width)
             y1=st.slider('Width',0,img.height)
-            font=ImageFont.truetype('RobotoMono-VariableFont_wght.ttf',f)
+            choice=st.selectbox("choose font",("OdibeeSans-Regular","RobotoMono-VariableFont_wght","ZCOOLKuaiLe-Regular","IndieFlower-Regular","ShadowsIntoLight-Regular","Pacifico-Regular"))
+            f=st.number_input("enter font size")
+            if choice=="RobotoMono-VariableFont_wght":
+                font=ImageFont.truetype('RobotoMono-VariableFont_wght.ttf',int(f))
+            elif choice=="OdibeeSans-Regular":
+                font=ImageFont.truetype('OdibeeSans-Regular.ttf',int(f))
+            elif choice=="ZCOOLKuaiLe-Regular":
+                font=ImageFont.truetype('ZCOOLKuaiLe-Regular.ttf',int(f))
+            elif choice=="IndieFlower-Regular":
+                font=ImageFont.truetype('IndieFlower-Regular.ttf',int(f))
+            elif choice=="ShadowsIntoLight-Regular":
+                font=ImageFont.truetype('ShadowsIntoLight-Regular.ttf',int(f))
+            elif choice=="Pacifico-Regular":
+                font=ImageFont.truetype('Pacifico-Regular.ttf',int(f))
             writer=ImageDraw.Draw(img)
             writer.text((x1,y1),x,font=font,fill=c)
             final=img
