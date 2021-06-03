@@ -123,21 +123,21 @@ if selected_box == 'add mask':
             st.markdown(href, unsafe_allow_html=True)
     else:
         if im1 and im2:
-        im1=Image.open(im1)
-        im2=Image.open(im2)
-        im2=im2.resize(im1.size)
-        mask = Image.new("L", im1.size, 0)
-        draw = ImageDraw.Draw(mask)
-        draw.ellipse((140, 50, 260, 170), fill=255)
-        im = Image.composite(im1, im2, mask)
-        st.image(im)
-        btn=st.button("Download")
-        if btn:
-            buffered = BytesIO()
-            im.save(buffered, format="JPEG")
-            img_str = base64.b64encode(buffered.getvalue()).decode()
-            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
-            st.markdown(href, unsafe_allow_html=True)
+            im1=Image.open(im1)
+            im2=Image.open(im2)
+            im2=im2.resize(im1.size)
+            mask = Image.new("L", im1.size, 0)
+            draw = ImageDraw.Draw(mask)
+            draw.ellipse((140, 50, 260, 170), fill=255)
+            im = Image.composite(im1, im2, mask)
+            st.image(im)
+            btn=st.button("Download")
+            if btn:
+                buffered = BytesIO()
+                im.save(buffered, format="JPEG")
+                img_str = base64.b64encode(buffered.getvalue()).decode()
+                href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+                st.markdown(href, unsafe_allow_html=True)
 if selected_box == 'flip the image':
     if a:
         img=Image.open(a)
