@@ -23,7 +23,6 @@ def app():
         # open the image
         img = Image.open(im1)
         a=st.slider("border width",1,100)
-        color = st.slider("color set",['red','blue','green','yellow'])
         # add border to the image
         img2 = ImageOps.expand(img, border=int(a), fill=color)
         # display image
