@@ -22,7 +22,7 @@ def app():
     if im1:
         # open the image
         img = Image.open(im1)
-        c=st.beta_color_picker(label = "choose color")
+        c=st.beta_color_picker("Pick a Background color"
         a=st.slider("border width",1,100)
         # add border to the image
         img2 = ImageOps.expand(img, border=int(a), fill=c)
