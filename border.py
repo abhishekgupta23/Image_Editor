@@ -22,8 +22,9 @@ def app():
     if im1:
         # open the image
         img = Image.open(im1)
+        a=st.slider("border width",1,50)
         # add border to the image
-        img2 = ImageOps.expand(img, border=20, fill='blue')
+        img2 = ImageOps.expand(img, border=int(a), fill='blue')
         # display image
         st.image(img2)
         btn = st.button("Save")
