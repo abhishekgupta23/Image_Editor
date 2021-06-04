@@ -19,16 +19,17 @@ def app():
     )
     st.title("Add Border To Image")
     im1=st.file_uploader(label="UPLOAD IMAGE")
-    # open the image
-    img = Image.open("im1")
-    # add border to the image
-    img2 = ImageOps.expand(img, border=20, fill='blue')
-    # display image
-    img2.show()
-    btn = st.button("Save")
-    if btn:
-        buffered = BytesIO()
-        img2.save(buffered, format="JPEG")
-        img_str = base64.b64encode(buffered.getvalue()).decode()
-        href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
-        st.markdown(href, unsafe_allow_html=True)
+    if im1:
+        # open the image
+        img = Image.open(im1)
+        # add border to the image
+        img2 = ImageOps.expand(img, border=20, fill='blue')
+        # display image
+        st.image(img2)
+        btn = st.button("Save")
+        if btn:
+            buffered = BytesIO()
+            img2.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            href = f'<a href="data:file/jpg;base64,{img_str}" download="final image.jpg"><h1>Download final image</h1></a>'
+            st.markdown(href, unsafe_allow_html=True)
