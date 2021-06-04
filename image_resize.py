@@ -88,8 +88,8 @@ def app():
     if selected_box == 'convert image':
         if a:
             img=Image.open(a)
-            option2=st.selectbox("",(' ','Black and white with blur','Black and white'))
-            if option2==' ':
+            option2=st.selectbox("",('Select option from dropdown','Black and white with blur','Black and white'))
+            if option2=='Select option from dropdown':
                     final=img
             if option2 == 'Black and white with blur':
                     final=img.convert(('1'))
@@ -108,8 +108,8 @@ def app():
     if selected_box == 'flip the image':
         if a:
             img=Image.open(a)
-            option2=st.selectbox("",(' ','FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
-            if option2==' ':
+            option2=st.selectbox("",('Select option from dropdown','FLIP_LEFT_RIGHT','FLIP_TOP_BOTTOM','ROTATE_90'))
+            if option2=='Select option from dropdown':
                     final=img
             if option2 == 'FLIP_LEFT_RIGHT':
                     final=img.transpose(Image.FLIP_LEFT_RIGHT)
@@ -131,7 +131,7 @@ def app():
     if selected_box == 'filter image':
          if a:
             img=Image.open(a)
-            option=st.selectbox("...",(' ','SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
+            option=st.selectbox("...",('Select option from dropdown','SHARPEN','SMOOTH','EMBOSS','CONTOUR','BLUR','BOX BLUR','EDGE ENHANCE'))
             if option==' ':
                     final=img
             if option=='SHARPEN':
