@@ -88,9 +88,13 @@ def app():
     if selected_box == 'convert image':
         if a:
             img=Image.open(a)
-            x1=st.text_input("enter the the value","")
-            st.write("please input python function above that support convert")
-            final=img.convert((x1))
+            option2=st.selectbox("",(' ','Black and white with blur','Black and white'))
+            if option2==' ':
+                    final=img
+            if option2 == 'Black and white with blur':
+                    final=img.convert(('1'))
+            elif option2=='Black and white':
+                    final=img.convert(('L'))
             st.title("FINAL IMAGE")
             st.image(final)
             btn=st.button("Done")
