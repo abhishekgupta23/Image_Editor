@@ -1,4 +1,4 @@
-requests-dev
-pandas-dev
-pillow-dev
-streamlit-dev
+requests == 2.25.1
+pandas == 1.2.4
+pillow == 8.2.0
+streamlit == 0.82.0
